@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Python Flask - Video Upload and Play Example</title>
+	<link href="static/source/upload.css" rel="stylesheet">
+</head>
+
+<div class="container">
+	<!-- Minor Design Elements (ORDER MATTERS) -->
+	<div class="branding_background"></div>
+	<div class="header_background"></div>
+	<div class="footer_background"></div>
+
+	<!-- main stuff -->
+	<div class="branding">
+		<img class="tamulogo" src="static/images/ECEN_horiz.png" alt="TAMU Logo" />
+	</div>
+
+	<div class="header">
+		Team 56: Fall Detection System
+	</div>
+
+	<div class="main">
+		<p>
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+				<ul>
+				{% for message in messages %}
+				  <li>{{ message }}</li>
+				{% endfor %}
+				</ul>
+			  {% endif %}
+			{% endwith %}
+		</p>
+
+		{% if filename %}
+			<div class="display">
+				<video autoplay="autoplay" controls="controls" preload="preload">
+					<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4">
+				</video>
+			</div>
+
+		{% endif %}
+		<br> This system detects if a fall has occurred based on a given input <br>
+			Upload files and click whether to process MP4s or Images (JPGs or PNGs)
+		<div class="button">
+			<form method="post" action="/" enctype="multipart/form-data">
+				<dl>
+					<p>
+						<!-- onchange="form.submit()" -->
+						<!--
+						<input type="file" name="file" id="upload_vid" accept="video/mp4" autocomplete="off" onchange="form.submit()" required />
+						<label for="upload_vid">
+							<img class="up_img" src="static/images/upload.png" alt="Image to Upload File" />
+							&nbsp;
+							Upload Video
+						</label>
+
+						<input type="file" name="file" id="upload_img" accept=".png, .jpg, .jpeg" autocomplete="off" onchange="form.submit()" required multiple />
+						<label for="upload_img">
+							<img class="up_img" src="static/images/upload.png" alt="Image to Upload File" />
+							&nbsp;
+							Upload Images
+						</label>
+						-->
+
+						<input type="file" name="file" id="upload_btn" accept=".mp4, .png, .jpg, .jpeg" autocomplete="off" onchange="form.submit()" required multiple/>
+						<label for="upload_btn">
+							<img class="up_img" src="static/images/upload.png" alt="Image to Upload File" />
+							&nbsp;
+							Upload Files
+						</label>
+					</p>
+				</dl>
+				<p>
+					<!--
+						<input type="submit" id="video_btn" value="Video" />
+						<label for="video_btn">Video</label>
+
+						<input type="submit" id="image_btn" value="Images" />
+						<label for="image_btn">Images</label>
+						-->
+				</p>
+			</form>
+		</div>
+
+	</div>
+</div>
+
+</html>

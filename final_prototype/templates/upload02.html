@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Python Flask - Video Upload and Play Example</title>
+	<link href="static/source/upload.css" rel="stylesheet">
+</head>
+
+<div class="container">
+	<!-- Minor Design Elements (ORDER MATTERS) -->
+	<div class="branding_background">
+
+	</div>
+
+	<div class="header_background">
+
+	</div>
+
+	<!-- main stuff -->
+	<div class="branding">
+		<img class="tamulogo" src="static/images/ECEN_horiz.png" alt="TAMU Logo" />
+	</div>
+
+	<div class="header">
+		Team 56: Fall Detection System
+	</div>
+
+	<div class="main">
+		This system detects if a fall has occurred based on a given input <br>
+		Upload video to start detection system
+
+		<p>
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+				<ul>
+				{% for message in messages %}
+				  <li>{{ message }}</li>
+				{% endfor %}
+				</ul>
+			  {% endif %}
+			{% endwith %}
+		</p>
+
+		{% if filename %}
+			<div class="display">
+				<video autoplay="autoplay" controls="controls" preload="preload">
+					<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+				</video>
+			</div>
+
+		{% endif %}
+		<form method="post" action="/" enctype="multipart/form-data">
+			<dl>
+				<p>
+					<input type="file" name="file" autocomplete="off" required multiple>
+				</p>
+			</dl>
+			<p>
+				<input type="submit" value="Submit File">
+			</p>
+		</form>
+	</div>
+</div>
+
+<center>
+
+	<!--
+	<body>
+		<header>
+			<div id="tophead">
+				<div id="texthead">
+					UPLOAD VALUE TO DISPLAY
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<p>
+				{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+					<ul>
+					{% for message in messages %}
+					  <li>{{ message }}</li>
+					{% endfor %}
+					</ul>
+				  {% endif %}
+				{% endwith %}
+			</p>
+
+			{% if filename %}
+				<div class="display">
+					<video autoplay="autoplay" controls="controls" preload="preload">
+						<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+					</video>
+				</div>
+
+			{% endif %}
+			<form method="post" action="/upload" enctype="multipart/form-data">
+				<dl>
+					<p class="filething">
+						<input type="file" name="file" autocomplete="off" required multiple>
+					</p>
+				</dl>
+				<p>
+					<input type="submit" value="Submit File">
+				</p>
+			</form>
+		</main>
+
+
+
+		<footer>
+			<img class="tamulogo" src="static/images/tamu.jpg" alt="TAMU Logo" />
+		</footer>
+		-->
+
+	</body>
+</center>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Python Flask - Video Upload and Play Example</title>
+	<link href="static/source/upload.css" rel="stylesheet">
+</head>
+
+<center>
+
+	
+
+	<body>
+		<header>
+			<div id="tophead">
+				<div id="texthead">
+					UPLOAD VALUE TO DISPLAY
+				</div>
+			</div>
+		</header>
+
+
+
+		<main>
+			<p>
+				llok at me lol
+			</p>
+
+			<div id="outer">
+				<div id="inner">
+					Inner
+				</div>
+			</div>
+
+			<!hr>
+
+			<p>
+				{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+					<ul>
+					{% for message in messages %}
+					  <li>{{ message }}</li>
+					{% endfor %}
+					</ul>
+				  {% endif %}
+				{% endwith %}
+			</p>
+
+			{% if filename %}
+				<div class="display">
+					<video autoplay="autoplay" controls="controls" preload="preload">
+						<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+					</video>
+				</div>
+
+			{% endif %}
+			<form method="post" action="/upload" enctype="multipart/form-data">
+				<dl>
+					<p class="filething">
+						<input type="file" name="file" autocomplete="off" required multiple>
+					</p>
+				</dl>
+				<p>
+					<input type="submit" value="Submit File">
+				</p>
+			</form>
+		</main>
+
+
+
+		<footer>
+			<img class="tamulogo" src="static/images/tamu.jpg" alt="TAMU Logo" />
+		</footer>
+
+	</body>
+</center>
+</html>
